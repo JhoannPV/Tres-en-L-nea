@@ -15,33 +15,44 @@ function Board({ xIsNext, squares, onPlay }) {
   }
 
   const winner = calculateWinner(squares);
+  const empate = calcularEmpate(squares, winner);
   let status;
   if (winner) {
     status = 'Ganador: ' + winner;
   } else {
     status = 'Siguiente Jugador: ' + (xIsNext ? 'X' : 'O');
   }
+  if(empate===true){
+    status = 'Empate';
+  }
 
   return (
     <>
       <div className="status">{status}</div>
       <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} className="winnerColor"/>
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} className="winnerColor"/>
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} className="winnerColor"/>
       </div>
       <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} className="winnerColor"/>
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} className="winnerColor"/>
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} className="winnerColor"/>
       </div>
       <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} className="winnerColor"/>
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} className="winnerColor"/>
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} className="winnerColor"/>
       </div>
     </>
   );
+}
+function calcularEmpate(squares, winner){
+  let arreglo=squares.slice();
+  let numMoves = arreglo.map((el)=>el==='X' || el ==='O'? 1 : 0).reduce((el,item)=> el+item,0);
+  if(numMoves===9 && !winner){
+    return true;
+  }
 }
 
 function calculateWinner(squares) {
