@@ -22,10 +22,9 @@ function Board({ xIsNext, squares, onPlay }) {
   } else {
     status = 'Siguiente Jugador: ' + (xIsNext ? 'X' : 'O');
   }
-  if(empate===true){
+  if(empate){
     status = 'Empate';
   }
-
   return (
     <>
       <div className="status">{status}</div>
