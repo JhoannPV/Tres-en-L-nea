@@ -13,7 +13,6 @@ function Board({ xIsNext, squares, onPlay }) {
     }
     onPlay(nextSquares);
   }
-
   const winner = calculateWinner(squares);
   const empate = calcularEmpate(squares, winner);
   let status;
@@ -66,6 +65,15 @@ function Board({ xIsNext, squares, onPlay }) {
 function calcularEmpate(squares, winner){
   let arreglo=squares.slice();
   let numMoves = arreglo.map((el)=>el==='X' || el ==='O'? 1 : 0).reduce((el,item)=> el+item,0);
+  if(numMoves===8){
+    let copiaArreglo=arreglo.map((el)=> el===null? 'X' : el);
+    const winner2 = calculateWinner(copiaArreglo);
+    if(!winner2){
+      return true;
+    }else{
+      return false;
+    }
+  }
   if(numMoves===9 && !winner){
     return true;
   }else{

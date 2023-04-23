@@ -57,8 +57,8 @@ body {
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: #58ecaf;
+  border: 1px solid rgb(43, 78, 51);
   float: left;
   font-size: 24px;
   font-weight: bold;
@@ -73,8 +73,8 @@ body {
 
 .square2 {
   transition: all 1.5s ease;
-  background: rgb(58, 216, 92);
-  border: 1px solid #999;
+  background: rgb(0, 255, 55);
+  border: 1px solid rgb(43, 78, 51);
   float: left;
   font-size: 24px;
   font-weight: bold;
