@@ -27,17 +27,18 @@ function Game() {
 
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+        <button className="fontSizeButton" onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
   });
 
   return (
-    <div className="game">
-      <div className="game-board">
+    <div className="game container">
+      <h1 className="title">Tres en Línea</h1>
+      <div className="game-board juego">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
-      <div className="game-info">
+      <div className="game-info nav">
         <ol>{moves}</ol>
       </div>
     </div>
