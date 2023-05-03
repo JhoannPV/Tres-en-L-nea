@@ -113,6 +113,7 @@ function calcularEmpate(squares, winner) {
     }
   }
   if (numMoves === 9 && !winner) {
+    console.log(winner);
     return true;
   } else {
     return false;
@@ -136,7 +137,6 @@ function calculateWinner(squares) {
       return { winner: squares[a], line: lines[i] };
     }
   }
-  return null;
 }
 
 export default Board;
