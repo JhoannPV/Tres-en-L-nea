@@ -113,7 +113,6 @@ function calcularEmpate(squares, winner) {
     }
   }
   if (numMoves === 9 && !winner) {
-    console.log(winner);
     return true;
   } else {
     return false;
