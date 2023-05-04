@@ -1,4 +1,5 @@
 import Square from "./Square";
+import axios from "axios";
 
 function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
@@ -13,11 +14,19 @@ function Board({ xIsNext, squares, onPlay }) {
     }
     onPlay(nextSquares);
   }
+
   const winner = calculateWinner(squares);
   const empate = calcularEmpate(squares, winner);
   let status;
   if (winner) {
     status = "Ganador: " + winner.winner;
+    const url = "https://64399062bd3623f1b9a3051a.mockapi.io/winners";
+    const data = {
+      name: winner.winner,
+      ganador: winner.winner,
+      avatar: winner.winner,
+    };
+    axios.post(url, data);
   } else {
     status = "Siguiente Jugador: " + (xIsNext ? "X" : "O");
   }
