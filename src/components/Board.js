@@ -15,6 +15,62 @@ function Board({ xIsNext, squares, onPlay }) {
     onPlay(nextSquares);
   }
 
+  let dateHoy = new Date();
+  let dateDia = dateHoy.getDate();
+  let dateMes = dateHoy.getMonth() + 1;
+  let dateAño = dateHoy.getFullYear();
+  let dateHours = dateHoy.getHours();
+  let dateMinutes = dateHoy.getMinutes();
+  let dateSeconds = dateHoy.getSeconds();
+  let dateTime;
+  if (dateHours > 12) {
+    if (dateHours === 13) {
+      dateHours = 1;
+    }
+    if (dateHours === 14) {
+      dateHours = 2;
+    }
+    if (dateHours === 15) {
+      dateHours = 3;
+    }
+    if (dateHours === 16) {
+      dateHours = 4;
+    }
+    if (dateHours === 17) {
+      dateHours = 5;
+    }
+    if (dateHours === 18) {
+      dateHours = 6;
+    }
+    if (dateHours === 19) {
+      dateHours = 7;
+    }
+    if (dateHours === 20) {
+      dateHours = 8;
+    }
+    if (dateHours === 21) {
+      dateHours = 9;
+    }
+    if (dateHours === 22) {
+      dateHours = 10;
+    }
+    if (dateHours === 23) {
+      dateHours = 11;
+    }
+    if (dateHours === 24) {
+      dateHours = 12;
+    }
+    dateTime = `${dateHours}:${dateMinutes}:${dateSeconds} p. m.`;
+  } else {
+    dateTime = `${dateHours}:${dateMinutes}:${dateSeconds} a. m.`;
+  }
+  let dateHoyModified = `${dateDia}/${dateMes}/${dateAño}`;
+  let fechaActualModified = `${dateHoyModified} a las ${dateTime}`;
+
+  console.log(dateHoyModified);
+  console.log(dateTime);
+  console.log(fechaActualModified);
+
   const winner = calculateWinner(squares);
   const empate = calcularEmpate(squares, winner);
   let status;
@@ -22,8 +78,8 @@ function Board({ xIsNext, squares, onPlay }) {
     status = "Ganador: " + winner.winner;
     const url = "https://64399062bd3623f1b9a3051a.mockapi.io/winners";
     const data = {
+      createdAt: fechaActualModified,
       name: winner.winner,
-      ganador: winner.winner,
       avatar: winner.winner,
     };
     axios.post(url, data);
