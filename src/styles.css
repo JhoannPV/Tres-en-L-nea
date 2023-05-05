@@ -90,7 +90,7 @@ body {
 
 .board-row:after {
   clear: both;
-  content: '';
+  content: "";
   display: table;
 }
 
@@ -105,16 +105,17 @@ body {
 .game-info {
   margin-left: 20px;
 }
-.container{
+.container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:  'title title'
-                        'juego nav';
+  grid-template-areas:
+    "title title"
+    "juego nav";
   width: 50em;
   margin: 0 auto;
 }
-.container .title{
+.container .title {
   grid-area: title;
   display: flex;
   flex-direction: column;
@@ -122,10 +123,10 @@ body {
   align-items: center;
   text-align: center;
   font-size: 3em;
-  font-family: 'Bruno Ace SC', cursive;
+  font-family: "Bruno Ace SC", cursive;
   color: rgb(185, 185, 185);
 }
-.container .juego{
+.container .juego {
   grid-area: juego;
   display: flex;
   flex-direction: column;
@@ -133,28 +134,36 @@ body {
   align-items: center;
   text-align: center;
   font-size: 1.5rem;
-  font-family: 'Bruno Ace SC', cursive;
+  font-family: "Bruno Ace SC", cursive;
   color: rgb(0, 0, 0);
   background-color: rgb(59, 59, 59);
   padding: 20px 20px 30px 20px;
   border-radius: 20px;
 }
-.container .nav{
+.container .nav {
   grid-area: nav;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   font-size: 1.5rem;
-  font-family: 'Bruno Ace SC', cursive;
+  font-family: "Bruno Ace SC", cursive;
   color: rgb(0, 0, 0);
   background-color: rgb(59, 59, 59);
   padding: 20px 30px 30px 10px;
   border-radius: 20px;
 }
-.fontSizeButton{
+.fontSizeButton {
   font-size: 1.5rem;
-  font-family: 'Bruno Ace SC', cursive;
+  font-family: "Bruno Ace SC", cursive;
   text-align: left;
   width: 20rem;
+}
+.historial-ganador {
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+}
+.aviso-historial {
+  color: rgb(0, 0, 0);
+  font-size: 0.8rem;
 }

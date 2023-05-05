@@ -1,5 +1,7 @@
 import Square from "./Square";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import Ganadores from "./Ganadores";
 
 function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
@@ -23,6 +25,7 @@ function Board({ xIsNext, squares, onPlay }) {
   let dateMinutes = dateHoy.getMinutes();
   let dateSeconds = dateHoy.getSeconds();
   let dateTime;
+  console.log(dateHoy);
   if (dateHours > 12) {
     if (dateHours === 13) {
       dateHours = 1;
@@ -57,19 +60,15 @@ function Board({ xIsNext, squares, onPlay }) {
     if (dateHours === 23) {
       dateHours = 11;
     }
-    if (dateHours === 24) {
-      dateHours = 12;
-    }
     dateTime = `${dateHours}:${dateMinutes}:${dateSeconds} p. m.`;
   } else {
+    if (dateHours === 0) {
+      dateHours = 12;
+    }
     dateTime = `${dateHours}:${dateMinutes}:${dateSeconds} a. m.`;
   }
   let dateHoyModified = `${dateDia}/${dateMes}/${dateAño}`;
   let fechaActualModified = `${dateHoyModified} a las ${dateTime}`;
-
-  console.log(dateHoyModified);
-  console.log(dateTime);
-  console.log(fechaActualModified);
 
   const winner = calculateWinner(squares);
   const empate = calcularEmpate(squares, winner);
@@ -78,9 +77,8 @@ function Board({ xIsNext, squares, onPlay }) {
     status = "Ganador: " + winner.winner;
     const url = "https://64399062bd3623f1b9a3051a.mockapi.io/winners";
     const data = {
-      createdAt: fechaActualModified,
-      name: winner.winner,
-      avatar: winner.winner,
+      fecha: fechaActualModified,
+      ganador: winner.winner,
     };
     axios.post(url, data);
   } else {
@@ -89,6 +87,16 @@ function Board({ xIsNext, squares, onPlay }) {
   if (empate) {
     status = "Empate";
   }
+
+  const [winners, setWinners] = useState([]);
+  useEffect(() => {
+    const getWinners = async () => {
+      const url = "https://64399062bd3623f1b9a3051a.mockapi.io/winners";
+      const result = await axios.get(url);
+      setWinners(result.data);
+    };
+    getWinners();
+  }, []);
 
   const squareColors = ["square", "square2"];
   let colorButton;
@@ -159,6 +167,13 @@ function Board({ xIsNext, squares, onPlay }) {
           onSquareClick={() => handleClick(8)}
           color={cambiarColor(8)}
         />
+      </div>
+      <div>
+        <p className="aviso-historial">
+          Para ver y Actualizar el historial de ganadores, recargue la página.
+        </p>
+        <br />
+        <Ganadores winners={winners} />
       </div>
     </>
   );
