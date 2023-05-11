@@ -103,6 +103,9 @@ function Board({ xIsNext, squares, onPlay }) {
       ganador: winner.winner,
     };
     axios.post(url, data);
+    setTimeout(() => {
+      window.location.reload();
+    }, 20000);
   } else {
     status = "Siguiente Jugador: " + (xIsNext ? "X" : "O");
   }
